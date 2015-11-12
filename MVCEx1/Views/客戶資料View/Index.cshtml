@@ -8,7 +8,7 @@
 <h2>@ViewBag.Title.</h2>
 
 <p>
-     @Html.ActionLink("Create New", "Create", "客戶資料")
+     @Html.ActionLink("新增資料", "Create", "客戶資料")
 </p>
 <table class="table">
     <tr>
@@ -70,7 +70,7 @@
              
                 @Html.ActionLink("Edit", "Edit", "客戶資料", new { id = item.Id }, null) |
                 @Html.ActionLink("客戶聯絡人", "IndexByClient", "客戶聯絡人", new { id = item.Id }, null) |
-                @Html.ActionLink("銀行資訊", "Edit", "客戶資料", new { id = item.Id }, null) 
+                @Html.ActionLink("銀行資訊", "IndexByClient", "客戶銀行資訊", new { id = item.Id }, null) 
                 @*@Html.ActionLink("Edit", "Edit", new {  id=item.Id  }) |
                 @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
                 @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })*@

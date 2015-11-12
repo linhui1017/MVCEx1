@@ -166,6 +166,7 @@
     <Compile Include="Controllers\客戶聯絡人Controller.cs" />
     <Compile Include="Controllers\客戶資料Controller.cs" />
     <Compile Include="Controllers\客戶資料ViewController.cs" />
+    <Compile Include="Controllers\客戶銀行資訊Controller.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -190,6 +191,8 @@
     <Compile Include="Models\sysdiagrams.cs">
       <DependentUpon>CustomerModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\CellPhoneNoAttribute.cs" />
+    <Compile Include="Models\UniformNoAttribute.cs" />
     <Compile Include="Models\客戶聯絡人.cs">
       <DependentUpon>CustomerModel.tt</DependentUpon>
     </Compile>
@@ -300,6 +303,13 @@
     <Content Include="Views\客戶聯絡人\Index.cshtml" />
     <Content Include="Views\客戶聯絡人\IndexByClient.cshtml" />
     <Content Include="Views\客戶聯絡人\CreateByClient.cshtml" />
+    <Content Include="Views\客戶銀行資訊\Create.cshtml" />
+    <Content Include="Views\客戶銀行資訊\Delete.cshtml" />
+    <Content Include="Views\客戶銀行資訊\Details.cshtml" />
+    <Content Include="Views\客戶銀行資訊\Edit.cshtml" />
+    <Content Include="Views\客戶銀行資訊\Index.cshtml" />
+    <Content Include="Views\客戶銀行資訊\IndexByClient.cshtml" />
+    <Content Include="Views\客戶銀行資訊\CreateByClient.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

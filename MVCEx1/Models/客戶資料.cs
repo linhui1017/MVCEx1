@@ -11,6 +11,7 @@ namespace MVCEx1.Models
 {
     using System;
     using System.Collections.Generic;
+	using System.ComponentModel.DataAnnotations;
     
     public partial class 客戶資料
     {
@@ -23,10 +24,12 @@ namespace MVCEx1.Models
     
         public int Id { get; set; }
         public string 客戶名稱 { get; set; }
+		[UniformNoAttribute]
         public string 統一編號 { get; set; }
         public string 電話 { get; set; }
         public string 傳真 { get; set; }
         public string 地址 { get; set; }
+		[EmailAddress]
         public string Email { get; set; }
         public bool 刪除註記 { get; set; }
     

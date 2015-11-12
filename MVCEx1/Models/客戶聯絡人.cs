@@ -19,6 +19,7 @@ namespace MVCEx1.Models
         public string 職稱 { get; set; }
         public string 姓名 { get; set; }
         public string Email { get; set; }
+		[CellPhoneNoAttribute]
         public string 手機 { get; set; }
         public string 電話 { get; set; }
         public bool 刪除註記 { get; set; }

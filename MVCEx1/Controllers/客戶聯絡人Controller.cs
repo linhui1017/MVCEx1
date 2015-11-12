@@ -27,9 +27,14 @@ namespace MVCEx1.Controllers
 		{
 			IQueryable<客戶聯絡人> result = null;
 			ViewBag.Title = string.Empty;
-			if(null != id) 
+			客戶資料 client = null;
+
+			if (null != id) {
+				client = db.客戶資料.Find(id);
+			}
+			if (null != client) 
 			{
-				客戶資料 client = db.客戶資料.Find(id);
+
 				ViewBag.Title = (null == client ? string.Empty : client.客戶名稱);
 				ViewBag.客戶Id = id;
 				result = db.客戶聯絡人.Where(x => x.客戶Id == id);
@@ -37,7 +42,7 @@ namespace MVCEx1.Controllers
 			}
 			else
 			{
-				result = db.客戶聯絡人.Include(客 => 客.客戶資料);
+				return RedirectToAction("Index", "客戶資料View");
 			}
 			ViewBag.Title = string.Format("{0}{1}{2}"
 				,ViewBag.Title
@@ -73,6 +78,7 @@ namespace MVCEx1.Controllers
 		public ActionResult CreateByClient(int? id)
 		{
 			ViewBag.客戶Id = new SelectList(db.客戶資料.Where(x=>x.Id == id), "Id", "客戶名稱");
+			ViewBag.ClientID = id;
 			return View();
 		}
 
@@ -126,7 +132,7 @@ namespace MVCEx1.Controllers
 			{
 				return HttpNotFound();
 			}
-			ViewBag.客戶Id = new SelectList(db.客戶資料, "Id", "客戶名稱", 客戶聯絡人.客戶Id);
+			ViewBag.客戶Id = new SelectList(db.客戶資料.Where(x => x.Id == 客戶聯絡人.客戶Id), "Id", "客戶名稱", 客戶聯絡人.客戶Id);
 			return View(客戶聯絡人);
 		}
 
@@ -141,9 +147,9 @@ namespace MVCEx1.Controllers
 			{
 				db.Entry(客戶聯絡人).State = EntityState.Modified;
 				db.SaveChanges();
-				return RedirectToAction("Index");
+				return RedirectToAction("IndexByClient", "客戶聯絡人", new { id = 客戶聯絡人.客戶Id });
 			}
-			ViewBag.客戶Id = new SelectList(db.客戶資料, "Id", "客戶名稱", 客戶聯絡人.客戶Id);
+			ViewBag.客戶Id = new SelectList(db.客戶資料.Where(x => x.Id == 客戶聯絡人.客戶Id), "Id", "客戶名稱", 客戶聯絡人.客戶Id);
 			return View(客戶聯絡人);
 		}
 
@@ -170,7 +176,8 @@ namespace MVCEx1.Controllers
 			客戶聯絡人 客戶聯絡人 = db.客戶聯絡人.Find(id);
 			db.客戶聯絡人.Remove(客戶聯絡人);
 			db.SaveChanges();
-			return RedirectToAction("Index");
+			return RedirectToAction("IndexByClient", "客戶聯絡人", new { id = 客戶聯絡人.客戶Id });
+			//return RedirectToAction("Index");
 		}
 
 		protected override void Dispose(bool disposing)
