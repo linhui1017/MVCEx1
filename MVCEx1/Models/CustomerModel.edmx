@@ -55,15 +55,11 @@
           <Property Name="刪除註記" Type="bit" Nullable="false" />
         </EntityType>
         <!--產生期間發現錯誤:
-警告 6002: 資料表/檢視 'E:\GITHUB\MVCEX1\MVCEX1\APP_DATA\客戶資料.MDF.dbo.客戶資料View' 未定義主索引鍵。已推斷此索引鍵，並將定義建立成唯讀的資料表/檢視。-->
+警告 6002: 資料表/檢視 'D:\GIT_WEB\MVCEX1\MVCEX1\APP_DATA\客戶資料.MDF.dbo.客戶資料View' 未定義主索引鍵。已推斷此索引鍵，並將定義建立成唯讀的資料表/檢視。-->
         <EntityType Name="客戶資料View">
           <Key>
             <PropertyRef Name="Id" />
-            <!--<PropertyRef Name="客戶名稱" />
-            <PropertyRef Name="統一編號" />
-            <PropertyRef Name="電話" />
-            <PropertyRef Name="刪除註記" />-->
-          </Key>
+           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="客戶名稱" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="統一編號" Type="char" MaxLength="8" Nullable="false" />

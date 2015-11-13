@@ -11,16 +11,28 @@ namespace MVCEx1.Models
 {
     using System;
     using System.Collections.Generic;
+	using System.ComponentModel.DataAnnotations;
     
     public partial class 客戶聯絡人
     {
         public int Id { get; set; }
+		[Required]
         public int 客戶Id { get; set; }
+		[Required]
+		[StringLength(50)]
         public string 職稱 { get; set; }
+		[Required]
+		[StringLength(50)]
         public string 姓名 { get; set; }
+		[Required]
+		[EmailAddress]
+		[StringLength(250)]
         public string Email { get; set; }
+		[Required]
+		[StringLength(50)]
 		[CellPhoneNoAttribute]
         public string 手機 { get; set; }
+		[StringLength(50)]
         public string 電話 { get; set; }
         public bool 刪除註記 { get; set; }
     

@@ -26,18 +26,10 @@ namespace MVCEx1.Models
 
 		public override bool IsValid(object value)
 		{
-			//^( 0 )(9)([0-9]{8})$
-
 			string text = value.ToString();
-			string number = @"^(0)(9)\d{2}\d{6}$";
-												  
-			// Instantiate the regular expression object.
+			string number = @"^([0-9]{4}[-]?[0-9]{3}[-]?[0-9]{3})$";
 			Regex r = new Regex(number, RegexOptions.IgnoreCase);
-
-			// Match the regular expression pattern against a text string.
 			Match m = r.Match(text);
-
-
 			return m.Success;
 		}
 

@@ -7,6 +7,15 @@
 
 <h2>@ViewBag.Title.</h2>
 
+@using (Html.BeginForm())
+{
+	<p class="text-left">
+		<input type="search" name="searchStr" value="@ViewBag.QueryString" accesskey="s" placeholder="請輸入關鍵字" required />
+		<input type="submit" value="搜尋" />
+		<input type="button" value="清除" onclick="location.href='@Url.Action("Index")'" />
+	</p>
+}
+
 <p>
      @Html.ActionLink("新增資料", "Create", "客戶資料")
 </p>

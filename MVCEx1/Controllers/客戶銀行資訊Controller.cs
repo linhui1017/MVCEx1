@@ -36,7 +36,7 @@ namespace MVCEx1.Controllers
 
 				ViewBag.Title = (null == client ? string.Empty : client.客戶名稱);
 				ViewBag.客戶Id = id;
-				result = client.客戶銀行資訊.ToList();
+				result = client.客戶銀行資訊.Where(x=>x.刪除註記 == false).ToList();
 				//result = db.客戶銀行資訊.Where(x => x.客戶Id == id);
 
 			}
@@ -176,7 +176,8 @@ namespace MVCEx1.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             客戶銀行資訊 客戶銀行資訊 = db.客戶銀行資訊.Find(id);
-            db.客戶銀行資訊.Remove(客戶銀行資訊);
+			客戶銀行資訊.刪除註記 = true;
+            //db.客戶銀行資訊.Remove(客戶銀行資訊);
             db.SaveChanges();
 			return RedirectToAction("IndexByClient", "客戶銀行資訊", new { id = 客戶銀行資訊.客戶Id });
         }

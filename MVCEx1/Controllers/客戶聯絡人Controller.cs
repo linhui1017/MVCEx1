@@ -20,7 +20,50 @@ namespace MVCEx1.Controllers
 			var 客戶聯絡人 = db.客戶聯絡人.Include(客 => 客.客戶資料);
 			return View(客戶聯絡人.ToList());
 		}
+		[HttpPost]
+		public ActionResult IndexByClient(string searchStr, int id)
+		{
+			IQueryable<客戶聯絡人> result = null;
+			ViewBag.Title = string.Empty;
+			客戶資料 client = null;
 
+			ViewBag.QueryString = string.Empty;
+
+			if (id >= 0)
+			{
+				client = db.客戶資料.Find(id);
+			}
+			if (null != client)
+			{
+
+				ViewBag.Title = (null == client ? string.Empty : client.客戶名稱);
+				ViewBag.客戶Id = id;
+				ViewBag.QueryString = searchStr;
+
+				result = db.客戶聯絡人.Where(
+					x => x.客戶Id == id
+					&&  x.刪除註記 == false
+					&& (x.姓名.ToLower().Contains(searchStr)
+						|| x.Email.ToLower().Contains(searchStr)
+						|| x.手機.ToLower().Contains(searchStr)
+					)
+					&& x.刪除註記 == false);
+
+			}
+			else
+			{
+				return RedirectToAction("Index", "客戶資料View");
+			}
+			ViewBag.Title = string.Format("{0}{1}{2}"
+				, ViewBag.Title
+				, (string.IsNullOrEmpty(ViewBag.Title) ? "" : "--")
+				, "聯絡人資料");
+
+			return View(result.ToList());
+
+
+
+		}
 		// GET: 客戶聯絡人
 		//依照客戶ID找出連絡人清單資料
 		public ActionResult IndexByClient(int? id)
@@ -37,7 +80,7 @@ namespace MVCEx1.Controllers
 
 				ViewBag.Title = (null == client ? string.Empty : client.客戶名稱);
 				ViewBag.客戶Id = id;
-				result = db.客戶聯絡人.Where(x => x.客戶Id == id);
+				result = db.客戶聯絡人.Where(x => x.客戶Id == id && x.刪除註記 == false);
 
 			}
 			else
@@ -174,7 +217,8 @@ namespace MVCEx1.Controllers
 		public ActionResult DeleteConfirmed(int id)
 		{
 			客戶聯絡人 客戶聯絡人 = db.客戶聯絡人.Find(id);
-			db.客戶聯絡人.Remove(客戶聯絡人);
+			//db.客戶聯絡人.Remove(客戶聯絡人);
+			客戶聯絡人.刪除註記 = true;
 			db.SaveChanges();
 			return RedirectToAction("IndexByClient", "客戶聯絡人", new { id = 客戶聯絡人.客戶Id });
 			//return RedirectToAction("Index");

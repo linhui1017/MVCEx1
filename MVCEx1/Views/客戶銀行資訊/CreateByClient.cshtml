@@ -5,7 +5,7 @@
     Layout = "~/Views/Shared/_LayoutCustomer.cshtml";
 }
 
-@*<h2>CreateByClient</h2>*@
+<h2>新建銀行帳戶</h2>
 
 
 @using (Html.BeginForm()) 
@@ -83,7 +83,7 @@
 }
 
 <div>
-	@Html.ActionLink("回聯絡人清單", "IndexByClient", "客戶聯絡人", new { id = ViewBag.ClientID }, null)
+	@Html.ActionLink("回銀行資訊清單", "IndexByClient", "客戶銀行資訊", new { id = ViewBag.ClientID }, null)
 </div>
 
 @section Scripts {

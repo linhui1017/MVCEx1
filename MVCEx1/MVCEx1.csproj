@@ -186,6 +186,8 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>CustomerModel.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\客戶資料UniformNoValidate.cs" />
+    <Compile Include="Models\客戶聯絡人EmailValidate.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\sysdiagrams.cs">

@@ -20,6 +20,33 @@ namespace MVCEx1.Controllers
 			return View(db.客戶資料View.ToList());
 		}
 
+		[HttpPost]
+		public ActionResult Index(string searchStr)
+		{
+			ViewBag.QueryString = string.Empty;
+			if (!string.IsNullOrEmpty(searchStr))
+			{
+				ViewBag.QueryString = searchStr;
+
+				var result = db.客戶資料View.Where(
+					x => x.客戶名稱.
+					ToLower().Contains(searchStr.ToLower())
+					||
+					x.Email.ToLower().Contains(searchStr.ToLower())	
+					||
+					x.電話.ToLower().Contains(searchStr.ToLower())
+					||
+					x.統一編號.ToLower().Contains(searchStr.ToLower())
+					||
+					x.地址.ToLower().Contains(searchStr.ToLower())
+					);
+				return View(result);
+
+			}
+			return View(new List<客戶資料View>());
+
+		}
+
 		// GET: 客戶資料View/Details/5
 		public ActionResult Details(int? id)
 		{
