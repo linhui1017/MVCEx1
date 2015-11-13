@@ -211,6 +211,10 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\aspnet-MVCEx1-20151110015526.mdf" />
+    <Content Include="App_Data\aspnet-MVCEx1-20151110015526_log.ldf">
+      <DependentUpon>aspnet-MVCEx1-20151110015526.mdf</DependentUpon>
+    </Content>
     <Content Include="App_Data\客戶資料.mdf" />
     <Content Include="App_Data\客戶資料_log.ldf">
       <DependentUpon>客戶資料.mdf</DependentUpon>
@@ -323,6 +327,7 @@
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
